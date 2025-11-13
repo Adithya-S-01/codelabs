@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java CodeLabs 2025 - NISB Computer Society</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="codeViewerModal" class="code-viewer-modal-overlay">
+        <div class="code-viewer-content">
+            <div class="code-viewer-header">
+                <h3 class="code-viewer-title">Full Code Snippet</h3>
+                <span class="code-viewer-close" id="codeViewerClose">&times;</span>
+            </div>
+            <div class="code-viewer-body" id="codeViewerBody">
+                </div>
+        </div>
+    </div>
+    
+    <div id="flowModal" class="flow-modal-overlay">
+        <div class="flow-modal-content">
+            <span class="flow-modal-close" id="flowModalClose">&times;</span>
+            <h3 id="flowModalTitle" class="modal-title"></h3>
+            <div id="flowModalExplanation" class="modal-explanation"></div>
+        </div>
+    </div>
+
+    <button id="fullscreenBtn" class="fullscreen-btn" title="Toggle Fullscreen">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+        </svg>
+    </button>
+
+    <div class="logo-container">
+        <img src="NISB-logo.png" alt="NISB" class="logo nisb-logo"> 
+        <img src="CS-logo.png" alt="NISB Computer Society" class="logo codelabs-logo"> 
+    </div>
+
+    <header class="hero">
+        <div class="header-decor">
+            <div class="code-shape shape-1">/ / / /</div>
+            <div class="code-shape shape-2">{ }</div>
+            <div class="code-shape shape-3">&lt; &gt;</div>
+            <div class="java-logo-icon">☕</div>
+   
+        <div class="container">
+            <h1 class="title">Java CodeLabs 2025</h1>
+            <p class="subtitle">NISB Computer Society</p>
+            <p class="tagline">Master Java Fundamentals in One Day</p>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <div class="container">
+            <a href="#session1" class="nav-link">Session 1</a>
+            <a href="#session2" class="nav-link">Session 2</a>
+        </div>
+    </nav>
+
+    <section id="session1" class="session">
+        <div class="container">
+            <h2 class="session-title">Session 1: Getting Started with Java</h2>
+            <p class="session-goal">Goal: Understand the language fundamentals and write your first program</p>
+
+            <div class="topic">
+                <h3 class="topic-title">Introduction to Java</h3>
+                <div class="content-grid">
+                    <div class="content-text">
+                        <h4>What is Java?</h4>
+                        <p>Java is a powerful, platform-independent programming language used for:</p>
+                        <ul>
+                            <li>Mobile Applications (Android)</li>
+                            <li>Backend Services & APIs</li>
+                            <li>Desktop Applications</li>
+                            <li>Web Applications</li>
+                            <li>Enterprise Software</li>
+                        </ul>
+                        <h4>Why Java?</h4>
+                        <ul>
+                            <li><strong>Platform Independent:</strong> Write Once, Run Anywhere (WORA)</li>
+                            <li><strong>Object-Oriented:</strong> Clean, modular code structure</li>
+                            <li><strong>Robust & Secure:</strong> Memory management and strong type checking</li>
+                        </ul>
+                        <div>
+                            <h4> Key Points:</h4>
+                            <ul>
+                                <li>Java code compiles to <strong>bytecode</strong>, not machine code</li>
+                                <li><strong>JVM (Java Virtual Machine)</strong> executes bytecode on any platform</li>
+                                <li>One <strong>.java</strong> file → One <strong>.class</strong> file after compilation</li>
+                                <li>Platform independence makes Java ideal for <strong>cross-platform applications</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flowchart" data-chart="compilation">
+                        <h4>Java Compilation Process <span class="click-hint">(Click steps for detail)</span></h4>
+                        <div class="flowchart-container">
+                            <div class="flow-step">
+                                <div class="flow-box source" data-step="source">Source Code<br><span>.java file</span></div>
+                                <div class="flow-arrow">↓ javac compiler</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box bytecode" data-step="bytecode">Bytecode<br><span>.class file</span></div>
+                                <div class="flow-arrow">↓ JVM interprets</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box jvm" data-step="jvm">Java Virtual Machine<br><span>(Platform Independent)</span></div>
+                                <div class="flow-arrow">↓ executes on</div>
+                            </div>
+                            <div class="flow-platforms">
+                                <div class="platform">Windows</div>
+                                <div class="platform">macOS</div>
+                                <div class="platform">Linux</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3 class="topic-title">First Java Program - Hello World</h3>
+                <div class="content-grid">
+                    <div class="code-section">
+                        <h4>Program Structure</h4>
+                        <pre id="code-1"><code>public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}</code></pre>
+                        <button class="code-viewer-btn" data-target="code-1">Show Full Code & Copy</button>
+                        <div class="explanation">
+                            <h4>Understanding the Code:</h4>
+                            <ul>
+                                <li><code>public class HelloWorld</code> - Declares a public class</li>
+                                <li><code>public static void main(String[] args)</code> - Entry point of the program</li>
+                                <li><code>System.out.println()</code> - Prints output to console</li>
+                                <li><code>;</code> - Every statement ends with a semicolon</li>
+                            </ul>
+                        </div>
+                        <div class="key-points">
+                            <h4> Key Points:</h4>
+                            <ul>
+                                <li><strong>Class name</strong> must match the <strong>filename</strong> (HelloWorld.java)</li>
+                                <li><code>main()</code> method is the <strong>starting point</strong> of execution</li>
+                                <li>Java is <strong>case-sensitive</strong> - Main ≠ main</li>
+                                <li>All code must be inside a <strong>class</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="code-section">
+                        <h4>Compilation & Execution</h4>
+                        <pre id="code-2"><code>// Compile the program
+javac HelloWorld.java
+
+// Run the program
+java HelloWorld
+
+// Output:
+Hello, World!</code></pre>
+                        <button class="code-viewer-btn" data-target="code-2">Show Full Code & Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3 class="topic-title">Variables, Data Types & Input/Output</h3>
+                <div class="content-grid">
+                    <div class="content-text">
+                        <h4>Primitive Data Types</h4>
+                        <table class="data-types-table">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Size</th>
+                                    <th>Example</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>int</code></td>
+                                    <td>4 bytes</td>
+                                    <td><code>int age = 25;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>float</code></td>
+                                    <td>4 bytes</td>
+                                    <td><code>float price = 19.99f;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>double</code></td>
+                                    <td>8 bytes</td>
+                                    <td><code>double pi = 3.14159;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>char</code></td>
+                                    <td>2 bytes</td>
+                                    <td><code>char grade = 'A';</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>boolean</code></td>
+                                    <td>1 bit</td>
+                                    <td><code>boolean isActive = true;</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="code-section">
+                        <h4>Example: Simple Calculator</h4>
+                        <pre id="code-3"><code>import java.util.Scanner;
+
+public class Calculator {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        
+        System.out.print("Enter first number: ");
+        int num1 = input.nextInt();
+        
+        System.out.print("Enter second number: ");
+        int num2 = input.nextInt();
+        
+        int sum = num1 + num2;
+        int difference = num1 - num2;
+        int product = num1 * num2;
+        double quotient = (double) num1 / num2;
+        
+        System.out.println("Sum: " + sum);
+        System.out.println("Difference: " + difference);
+        System.out.println("Product: " + product);
+        System.out.println("Quotient: " + quotient);
+        
+                        input.close();
+    }
+}</code></pre>
+                        <button class="code-viewer-btn" data-target="code-3">Show Full Code & Copy</button>
+                        <div class="key-points">
+                            <h4> Key Points:</h4>
+                            <ul>
+                                <li><code>Scanner</code> is used to read <strong>user input</strong> from console</li>
+                                <li><code>nextInt()</code>, <code>nextFloat()</code>, <code>nextLine()</code> for different types</li>
+                                <li>Always <strong>close Scanner</strong> after use to prevent memory leaks</li>
+                                <li>Use <strong>type casting</strong> like <code>(double)</code> to avoid integer division</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>    <section id="session2" class="session alt-bg">
+        <div class="container">
+            <h2 class="session-title">Session 2: Flow Control & Functions</h2>
+            <p class="session-goal">Goal: Write logical programs with loops, conditions, and modular functions</p>
+
+            <div class="topic">
+                <h3 class="topic-title">Conditional Statements</h3>
+                <div class="content-grid">
+                    <div class="flowchart" data-chart="conditional">
+                        <h4>If-Else Flowchart <span class="click-hint">(Click steps for detail)</span></h4>
+                        <div class="flowchart-container">
+                            <div class="flow-step">
+                                <div class="flow-box decision" data-step="condition">Condition?</div>
+                                <div class="flow-branches">
+                                    <div class="branch">
+                                        <div class="flow-arrow-side" data-step="true-path">True →</div>
+                                        <div class="flow-box action" data-step="if-block">Execute if block</div>
+                                    </div>
+                                    <div class="branch">
+                                        <div class="flow-arrow-side" data-step="false-path">False →</div>
+                                        <div class="flow-box action" data-step="else-block">Execute else block</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="code-section">
+                        <h4>Example: Even or Odd</h4>
+                        <pre id="code-4"><code>import java.util.Scanner;
+
+public class EvenOdd {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter a number: ");
+        int number = sc.nextInt();
+        
+        if (number % 2 == 0) {
+            System.out.println(number + " is Even");
+        } else {
+            System.out.println(number + " is Odd");
+        }
+        
+        sc.close();
+    }
+}</code></pre>
+                        <button class="code-viewer-btn" data-target="code-4">Show Full Code & Copy</button>
+                        <div class="key-points">
+                            <h4> Key Points:</h4>
+                            <ul>
+                                <li><code>if-else</code> executes code based on <strong>boolean conditions</strong></li>
+                                <li><code>%</code> (modulo) operator gives the <strong>remainder</strong> of division</li>
+                                <li>Use <code>else if</code> for <strong>multiple conditions</strong></li>
+                                <li><code>switch</code> is cleaner for checking <strong>one variable</strong> against multiple values</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid" style="margin-top: 2rem;">
+                    <div class="code-section">
+                        <h4>Example: Grading System</h4>
+                        <pre id="code-5"><code>import java.util.Scanner;
+
+public class GradeCalculator {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter your marks (0-100): ");
+        int marks = sc.nextInt();
+        
+        if (marks >= 90) {
+            System.out.println("Grade: A+");
+        } else if (marks >= 80) {
+            System.out.println("Grade: A");
+        } else if (marks >= 70) {
+            System.out.println("Grade: B");
+        } else if (marks >= 60) {
+            System.out.println("Grade: C");
+        } else if (marks >= 50) {
+            System.out.println("Grade: D");
+        } else {
+            System.out.println("Grade: F");
+        }
+        
+        sc.close();
+    }
+}</code></pre>
+                        <button class="code-viewer-btn" data-target="code-5">Show Full Code & Copy</button>
+                    </div>
+                    <div class="code-section">
+                        <h4>Switch Statement Example</h4>
+                        <pre id="code-6"><code>import java.util.Scanner;
+
+public class Calculator {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter operator (+,-,*,/): ");
+        char operator = sc.next().charAt(0);
+        
+        System.out.print("Enter two numbers: ");
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        
+        switch (operator) {
+            case '+':
+                System.out.println("Result: " + (a + b));
+                break;
+            case '-':
+                System.out.println("Result: " + (a - b));
+                break;
+            case '*':
+                System.out.println("Result: " + (a * b));
+                break;
+            case '/':
+                System.out.println("Result: " + (a / b));
+                break;
+            default:
+                System.out.println("Invalid operator");
+        }
+        
+        sc.close();
+    }
+}</code></pre>
+                        <button class="code-viewer-btn" data-target="code-6">Show Full Code & Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3 class="topic-title">Loops (for, while, do-while)</h3>
+                <div class="content-grid">
+                    <div class="flowchart" data-chart="loop">
+                        <h4>Loop Flowchart <span class="click-hint">(Click steps for detail)</span></h4>
+                        <div class="flowchart-container">
+                            <div class="flow-step">
+                                <div class="flow-box start" data-step="initialize">Initialize</div>
+                                <div class="flow-arrow">↓</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box decision" data-step="condition-check">Condition True?</div>
+                                <div class="flow-arrow">↓ Yes</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box action" data-step="execute-body">Execute Body</div>
+                                <div class="flow-arrow">↓</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box action" data-step="update">Update</div>
+                                <div class="flow-arrow loop-back">↑ Loop Back</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box end" data-step="exit">No → Exit Loop</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-text">
+                        <h4>Loop Types</h4>
+                        <div class="loop-comparison">
+                            <div class="loop-type">
+                                <h5>For Loop</h5>
+                                <p>Use when you know the number of iterations</p>
+                                <pre><code>for (int i = 1; i <= 5; i++) {
+    System.out.println(i);
+}</code></pre>
+                            </div>
+                            <div class="loop-type">
+                                <h5>While Loop</h5>
+                                <p>Use when condition is checked before execution</p>
+                                <pre><code>int i = 1;
+while (i <= 5) {
+    System.out.println(i);
+    i++;
+}</code></pre>
+                            </div>
+                            <div class="loop-type">
+                                <h5>Do-While Loop</h5>
+                                <p>Use when body should execute at least once</p>
+                                <pre><code>int i = 1;
+do {
+    System.out.println(i);
+    i++;
+} while (i <= 5);</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid" style="margin-top: 2rem;">
+                    <div class="code-section">
+                        <h4>Example: Multiplication Table</h4>
+                        <pre id="code-7"><code>import java.util.Scanner;
+
+public class MultiplicationTable {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter a number: ");
+        int num = sc.nextInt();
+        
+        System.out.println("Multiplication Table of " + num);
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(num + " x " + i + " = " + (num * i));
+        }
+        
+        sc.close();
+    }
+}</code></pre>
+                        <button class="code-viewer-btn" data-target="code-7">Show Full Code & Copy</button>
+                    </div>
+                    <div class="code-section">
+                        <h4>Example: Pattern Printing</h4>
+                        <pre id="code-8"><code>public class StarPattern {
+    public static void main(String[] args) {
+        int rows = 5;
+        
+        // Right-angled triangle
+        for (int i = 1; i <= rows; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+        
+        // Output:
+        // * // * * // * * * // * * * * // * * * * * }
+}</code></pre>
+                        <button class="code-viewer-btn" data-target="code-8">Show Full Code & Copy</button>
+                        <div class="key-points">
+                            <h4> Key Points:</h4>
+                            <ul>
+                                <li><code>for</code> loop: Use when you know the <strong>number of iterations</strong></li>
+                                <li><code>while</code> loop: Condition checked <strong>before</strong> execution</li>
+                                <li><code>do-while</code> loop: Executes <strong>at least once</strong>, condition checked after</li>
+                                <li><strong>Nested loops</strong> are used for patterns and 2D operations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3 class="topic-title">Functions / Methods</h3>
+                <div class="content-grid">
+                    <div class="content-text">
+                        <h4>Why Use Functions?</h4>
+                        <ul>
+                            <li><strong>Reusability:</strong> Write once, use multiple times</li>
+                            <li><strong>Modularity:</strong> Break complex problems into smaller parts</li>
+                            <li><strong>Maintainability:</strong> Easier to update and debug</li>
+                        </ul>
+                        <h4>Function Syntax</h4>
+                        <pre><code>accessModifier returnType functionName(parameters) {
+    // function body
+    return value; // if return type is not void
+}</code></pre>
+                        <div class="explanation">
+                            <h4>Understanding the Code:</h4>
+                            <p><strong>Example:</strong></p>
+                            <pre><code>public static int add(int a, int b) {
+    return a + b;
+}</code></pre>
+                        </div>
+                    </div>
+                    <div class="flowchart" data-chart="function">
+                        <h4>Function Flow <span class="click-hint">(Click steps for detail)</span></h4>
+                        <div class="flowchart-container">
+                            <div class="flow-step">
+                                <div class="flow-box start" data-step="main-call">Main Program</div>
+                                <div class="flow-arrow">↓ calls function</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box function" data-step="parameters">Function<br><span>Parameters received</span></div>
+                                <div class="flow-arrow">↓</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box action" data-step="execution">Execute Function Body</div>
+                                <div class="flow-arrow">↓</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box action" data-step="return-value">Return Value</div>
+                                <div class="flow-arrow">↓</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box end" data-step="main-return">Back to Main</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid" style="margin-top: 2rem;">
+                    <div class="code-section">
+                        <h4>Example: Factorial Function</h4>
+                        <pre id="code-9"><code>import java.util.Scanner;
+
+public class FactorialCalculator {
+    
+    // Function to calculate factorial
+    public static int factorial(int n) {
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+        
+        int result = 1;
+        for (int i = 2; i <= n; i++) {
+            result *= i;
+        }
+        return result;
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter a number: ");
+        int num = sc.nextInt();
+        
+        int fact = factorial(num);
+        System.out.println("Factorial of " + num + " is: " + fact);
+        
+        sc.close();
+    }
+}</code></pre>
+                        <button class="code-viewer-btn" data-target="code-9">Show Full Code & Copy</button>
+                    </div>
+                    <div class="code-section">
+                        <h4>Example: Prime Number Checker</h4>
+                        <pre id="code-10"><code>import java.util.Scanner;
+
+public class PrimeChecker {
+    
+    // Function to check if number is prime
+    public static boolean isPrime(int n) {
+        if (n <= 1) {
+            return false;
+        }
+        
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter a number: ");
+        int num = sc.nextInt();
+        
+        if (isPrime(num)) {
+            System.out.println(num + " is a Prime number");
+        } else {
+            System.out.println(num + " is not a Prime number");
+        }
+        
+        sc.close();
+    }
+}</code></pre>
+                        <button class="code-viewer-btn" data-target="code-10">Show Full Code & Copy</button>
+                        <div class="key-points">
+                            <h4> Key Points:</h4>
+                            <ul>
+                                <li>Functions promote <strong>code reusability</strong> and <strong>modularity</strong></li>
+                                <li><code>return</code> statement sends value back to the caller</li>
+                                <li><code>void</code> functions don't return any value</li>
+                                <li>Use <strong>descriptive names</strong> and keep functions focused on <strong>one task</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic challenge">
+                <h3 class="topic-title"> Mini Challenge: Pattern Party</h3>
+                <div class="challenge-content">
+                    <p class="challenge-desc">Create your own creative star or number pattern using loops! Here are some examples to inspire you:</p>
+                    <div class="pattern-examples">
+                        <div class="pattern-example">
+                            <h4>Pyramid Pattern</h4>
+                            <pre id="code-11"><code>public class Pyramid {
+    public static void main(String[] args) {
+        int rows = 5;
+        
+        for (int i = 1; i <= rows; i++) {
+            // Print spaces
+            for (int j = 1; j <= rows - i; j++) {
+                System.out.print(" ");
+            }
+            // Print stars
+            for (int k = 1; k <= 2 * i - 1; k++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+}
+
+// Output:
+//     *
+//    ***
+//   *****
+//  *******
+// *********</code></pre>
+                            <button class="code-viewer-btn" data-target="code-11">Show Full Code & Copy</button>
+                        </div>
+                        <div class="pattern-example">
+                            <h4>Number Pattern</h4>
+                            <pre id="code-12"><code>public class NumberPattern {
+    public static void main(String[] args) {
+        int rows = 5;
+        
+        for (int i = 1; i <= rows; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print(j + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+// Output:
+// 1 
+// 1 2 
+// 1 2 3 
+// 1 2 3 4 
+// 1 2 3 4 5</code></pre>
+                            <button class="code-viewer-btn" data-target="code-12">Show Full Code & Copy</button>
+                        </div>
+                        <div class="pattern-example">
+                            <h4>Diamond Pattern</h4>
+                            <pre id="code-13"><code>public class Diamond {
+    public static void main(String[] args) {
+        int n = 5;
+        
+        // Upper half
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" ");
+            }
+            for (int k = 1; k <= 2 * i - 1; k++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+        
+        // Lower half
+        for (int i = n - 1; i >= 1; i--) {
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" ");
+            }
+            for (int k = 1; k <= 2 * i - 1; k++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+}</code></pre>
+                            <button class="code-viewer-btn" data-target="code-13">Show Full Code & Copy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 NISB Computer Society - Java CodeLabs</p>
+            <p>Happy Coding! </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

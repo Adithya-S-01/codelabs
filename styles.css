@@ -1,0 +1,791 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* High-Contrast, Tech-Focused Palette for Projector */
+    --primary-color: #000000; /* Deep Black for Contrast */
+    --secondary-color: #00FFFF; /* Electric Cyan/Blue */
+    --accent-color: #FF7B00; /* Vivid Orange/Amber */
+    --bg-color: #ffffff;
+    --bg-alt: #F0F4F8; /* Light gray-blue for alternate sessions */
+    --text-color: #1A1A1A; 
+    --text-secondary: #5C6773;
+    --border-color: #DDE2E7;
+    --code-bg: #1A1A1A; /* Dark code block */
+    --code-color: #A8FFC0; /* Neon Green/Mint for high contrast code */
+    --success-color: #4CAF50;
+    --warning-color: #FFC107;
+    --error-color: #F44336;
+    --shadow-bold: 0 15px 30px rgba(0, 0, 0, 0.2);
+    --sticky-bg: #FFFCE0; /* Key points background */
+    --comment-bg: #F0FFF4; /* Explanation background (Light green-blue) */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    font-size: 1.1rem; /* Base font size increased for legibility */
+}
+
+.container {
+    max-width: 1250px; 
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Fullscreen Button (Retained) */
+.fullscreen-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--accent-color);
+    color: var(--primary-color);
+    border: 3px solid var(--primary-color);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.fullscreen-btn:hover {
+    background: var(--secondary-color);
+    transform: scale(1.1) rotate(10deg);
+    color: white;
+}
+
+/* --- Hero Section & Animations --- */
+.hero {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #333333 100%);
+    color: white;
+    padding: 6rem 0 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+}
+
+/* Logo Styling (Retained - Sticky like Fullscreen Button) */
+.logo-container {
+    position: fixed; /* Fixed position - stays visible on scroll */
+    top: 20px;
+    left: 20px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    z-index: 1001; /* Higher than fullscreen button */
+    pointer-events: auto; /* Ensure clickable if needed */
+    transition: all 0.3s ease;
+}
+
+.logo {
+    height: 55px; 
+    width: auto;
+    background: rgba(255, 255, 255, 1);
+    padding: 8px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Dynamic shapes animation (Retained) */
+.code-shape {
+    position: absolute;
+    font-family: 'Courier New', monospace;
+    font-size: 3rem;
+    font-weight: 700;
+    color: rgba(0, 255, 255, 0.3); 
+    pointer-events: none;
+    animation: floatShape 15s infinite ease-in-out;
+    opacity: 0.8;
+}
+
+.shape-1 { top: 10%; left: 5%; font-size: 4rem; animation-delay: 0s; }
+.shape-2 { bottom: 15%; right: 10%; font-size: 5rem; animation-delay: 5s; color: rgba(255, 123, 0, 0.3); } 
+.shape-3 { top: 70%; left: 80%; font-size: 3.5rem; animation-delay: 10s; }
+
+@keyframes floatShape {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(30px, -15px) rotate(10deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* Java Logo Icon Animation (Retained) */
+.java-logo-icon {
+    position: absolute;
+    top: 40%;
+    right: 5%;
+    font-size: 8rem;
+    line-height: 1;
+    color: var(--accent-color);
+    text-shadow: 0 0 20px rgba(255, 123, 0, 0.8);
+    pointer-events: none;
+    animation: spinAndFloat 20s linear infinite, floatShape 15s infinite ease-in-out;
+    opacity: 0.7;
+    transform-origin: 50% 50%;
+}
+
+@keyframes spinAndFloat {
+    from { transform: rotate(0deg) translate(0, 0); }
+    to { transform: rotate(360deg) translate(0, 0); }
+}
+
+/* New Meme Animation Placeholder (Retained) */
+.java-meme-icon {
+    position: absolute;
+    bottom: 0;
+    left: 40%;
+    transform: translateX(-50%) rotate(-5deg);
+    font-size: 8rem;
+    line-height: 1;
+    color: var(--secondary-color);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+    pointer-events: none;
+    animation: bounce 4s infinite ease-in-out alternate;
+    z-index: 5;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0) rotate(-5deg); }
+    50% { transform: translateX(-50%) translateY(-20px) rotate(5deg); }
+}
+
+.title {
+    font-size: 4.5rem; 
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin-bottom: 0.8rem;
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+.subtitle {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+/* Tagline Animation (Retained Fix) */
+.tagline {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    opacity: 1;
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    display: inline-block;
+    padding: 0.8rem 2rem; 
+    border-radius: 5px;
+    margin-top: 1.5rem;
+    font-weight: 800;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    animation: typing 3s steps(35, end) 1s forwards, blink-caret 0.75s step-end infinite;
+    border-right: 3px solid var(--primary-color);
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 550px; } 
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--primary-color); }
+}
+
+/* --- Navigation (Retained) --- */
+.navigation {
+    background: var(--primary-color);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 4px solid var(--accent-color);
+}
+
+.navigation .container {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    padding: 1rem 2rem;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.2rem;
+    padding: 0.7rem 1.8rem;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link:hover {
+    color: var(--secondary-color);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-link.active {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(255, 123, 0, 0.8);
+}
+
+/* --- Session Sections (Retained) --- */
+.session {
+    padding: 6rem 0; 
+}
+
+.session.alt-bg {
+    background: var(--bg-alt);
+}
+
+.session-title {
+    font-size: 3.2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.session-goal {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 5rem;
+    font-style: italic;
+    border-bottom: 3px solid var(--secondary-color);
+    padding-bottom: 1rem;
+    display: inline-block;
+}
+
+/* --- Topics (Retained) --- */
+.topic {
+    background: var(--bg-color);
+    border-radius: 1.5rem;
+    padding: 3.5rem;
+    margin-bottom: 5rem;
+    box-shadow: var(--shadow-bold);
+    border: 2px solid var(--border-color);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.topic:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.topic-title {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 2rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 5px solid var(--secondary-color);
+    display: inline-block;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+/* Content Grid (Retained) */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 3.5rem;
+    margin-top: 2rem;
+}
+
+.content-text h4 {
+    color: var(--primary-color);
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    border-left: 5px solid var(--accent-color);
+    padding-left: 15px;
+    font-weight: 700;
+}
+
+.content-text ul {
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+    list-style: square;
+}
+
+.content-text li {
+    margin-bottom: 0.8rem;
+}
+
+/* Code Sections (Retained) */
+.code-section {
+    background: var(--code-bg);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); 
+    border: 2px solid var(--secondary-color);
+    position: relative; 
+}
+
+.code-section h4 {
+    color: var(--secondary-color);
+    font-size: 1.7rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+pre {
+    background: var(--code-bg);
+    color: var(--code-color);
+    padding: 2rem;
+    border-radius: 1rem;
+    overflow-x: auto;
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    font-size: 1.1rem; 
+    line-height: 1.6;
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    cursor: default; /* Reset cursor */
+}
+
+/* New: Code Viewer Button Style (Retained) */
+.code-viewer-btn {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    margin-top: 1rem;
+    background: var(--accent-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.code-viewer-btn:hover {
+    background: #FF9833; 
+    transform: translateY(-2px);
+}
+
+
+/* 'Understanding the Code' (Code Comment Look - Retained Fixed Style) */
+.explanation {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: var(--comment-bg); 
+    border-radius: 1rem;
+    border-left: 6px solid var(--secondary-color); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.explanation h4 {
+    color: var(--primary-color);
+    border-left: none; 
+    padding-left: 0;
+}
+
+/* Data Types Table (Retained) */
+.data-types-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+
+.data-types-table th,
+.data-types-table td {
+    padding: 1.2rem;
+    text-align: left;
+    border-bottom: 2px solid #D1D5DB;
+    font-size: 1.1rem;
+}
+
+.data-types-table th {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    font-weight: 800;
+}
+
+.data-types-table tbody tr:nth-child(even) {
+    background: #F3F4F6;
+}
+
+.data-types-table tr:hover {
+    background: #E5F3FF; 
+}
+
+/* --- Flowcharts (REVERTED TO ORIGINAL LOOK, FIXING PLATFORM STYLES) --- */
+.flowchart {
+    background: var(--bg-alt); 
+    border-radius: 0.5rem;
+    padding: 1.5rem; 
+    border: none;
+}
+
+.flowchart h4 {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.flowchart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 1rem;
+}
+
+.flow-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 0.5rem;
+}
+
+.flow-box {
+    /* Original flow box style */
+    background: white;
+    border: 2px solid var(--primary-color);
+    border-radius: 0.5rem;
+    padding: 1rem 1.5rem;
+    min-width: 200px;
+    text-align: center;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer; /* Enable click to view details */
+}
+
+/* Original Specific Box Colors */
+.flow-box.source { background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border-color: var(--primary-color); }
+.flow-box.bytecode { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-color: var(--warning-color); } /* Adjusted border to match accent color */
+.flow-box.jvm { background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border-color: var(--success-color); }
+.flow-box.decision { 
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-color: var(--accent-color);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    min-width: 180px;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flow-box.action { background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); }
+.flow-box.start { background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border-radius: 2rem; }
+.flow-box.end { background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border-radius: 2rem; border-color: var(--error-color); }
+.flow-box.function { background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%); }
+
+.flow-box:hover {
+    transform: scale(1.03); 
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    border-color: var(--accent-color);
+}
+.flow-box.highlight {
+    box-shadow: 0 0 10px 3px var(--accent-color); 
+    border-color: var(--accent-color) !important;
+}
+
+.flow-box span {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: normal;
+    opacity: 0.8;
+    margin-top: 0.25rem;
+}
+
+.flow-arrow {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: block;
+    margin: 5px 0;
+}
+
+.flow-arrow-side {
+    color: var(--primary-color);
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.flow-arrow.loop-back {
+    color: var(--accent-color);
+}
+
+.flow-platforms {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* FIX: Restored original .platform style */
+.platform {
+    background: var(--success-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+}
+/* End Flowchart Fixes */
+
+/* --- Key Points Box (Retained Fixed Style) --- */
+.key-points {
+    background: var(--sticky-bg); 
+    border-left: 8px solid var(--accent-color);
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-top: 2.5rem;
+    font-size: 1.1rem;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.key-points h4 {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+.key-points ul {
+    list-style: disc;
+    margin-left: 1.5rem;
+}
+
+.key-points code {
+    background: #FFF0B2;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.3rem;
+    color: var(--primary-color);
+}
+
+/* FIX: Challenge Section background color (Orange accent) */
+.challenge {
+    background: linear-gradient(135deg, 0%, #ff99337a 100%);
+    border: 6px solid var(--primary-color);
+    padding: 5rem 4rem;
+    transform: rotate(1deg); 
+    margin: 6rem auto;
+    border-radius: 2rem;
+    box-shadow: var(--shadow-bold);
+    transition: transform 0.3s ease;
+}
+
+.challenge:hover {
+    transform: rotate(0deg) scale(1.03);
+}
+
+.challenge .topic-title {
+    color: var(--primary-color);
+    text-align: center;
+    font-size: 3rem;
+    text-shadow: 2px 2px 0px white;
+    border-bottom: none;
+}
+
+.challenge-desc {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.pattern-examples {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem; 
+}
+
+.pattern-example {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 3px solid var(--accent-color);
+}
+
+.pattern-example h4 {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+}
+
+/* --- Footer (Retained) --- */
+.footer {
+    background: var(--primary-color);
+    color: #D1E8F6;
+    text-align: center;
+    padding: 3rem 0;
+    margin-top: 5rem;
+    border-top: 6px solid var(--accent-color);
+    font-size: 1rem;
+}
+
+
+/* --- Dedicated Code Viewer Modal (Retained) --- */
+.code-viewer-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+}
+
+.code-viewer-content {
+    background: var(--code-bg);
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 800px;
+    height: 90%; 
+    box-shadow: 0 0 40px var(--secondary-color);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.code-viewer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent-color);
+    margin-bottom: 15px;
+}
+
+.code-viewer-title {
+    color: var(--secondary-color);
+    font-size: 1.8rem;
+}
+
+.code-viewer-close {
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.code-viewer-close:hover {
+    color: var(--error-color);
+}
+
+.code-viewer-body {
+    flex-grow: 1;
+    overflow-y: auto; 
+    padding-right: 10px; 
+}
+
+.code-viewer-body pre {
+    background: none;
+    color: var(--code-color);
+    padding: 0;
+    border: none;
+    font-size: 1rem;
+    white-space: pre;
+    cursor: default;
+}
+/* End Dedicated Code Viewer Modal */
+
+
+/* --- Flowchart Detail Modal (Retained) --- */
+#flowModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+#flowModal .flow-modal-content {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 40px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 10px 40px rgba(0, 255, 255, 0.8);
+    position: relative;
+}
+
+#flowModal .flow-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: var(--accent-color);
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+#flowModal .flow-modal-close:hover {
+    color: white;
+}
+
+#flowModal .modal-title {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 5px;
+}
+
+#flowModal .modal-explanation {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: white;
+}
+/* End Flowchart Modal Styling */
+
+
+/* Responsive Design (Retained) */
+@media (max-width: 768px) {
+    .title { font-size: 3rem; }
+    .subtitle { font-size: 1.5rem; }
+    .tagline {
+        font-size: 1.1rem;
+        animation: typing-mobile 3s steps(35, end) 1s forwards, blink-caret 0.75s step-end infinite;
+        width: 0;
+        padding: 0.5rem 1rem;
+    }
+    @keyframes typing-mobile {
+        from { width: 0 }
+        to { width: 320px; } 
+    }
+    .session-title { font-size: 2.2rem; }
+    .topic-title { font-size: 1.8rem; }
+    .content-grid { grid-template-columns: 1fr; }
+    .navigation .container { flex-direction: column; gap: 0.5rem; }
+    .flow-branches { flex-direction: column; gap: 1rem; }
+    pre { font-size: 0.85rem; padding: 1rem; }
+    .logo-container { top: 20px; left: 20px; gap: 8px; }
+    .logo { height: 35px; padding: 5px; }
+    .java-logo-icon, .java-meme-icon { font-size: 4rem; }
+    .challenge { transform: rotate(0deg); padding: 2rem 1.5rem; }
+    .code-viewer-content { height: 80%; }
+}
