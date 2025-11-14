@@ -1543,27 +1543,29 @@ public class BankDemo {
                     <pre id="code-22"><code>import java.util.Scanner;
 
 // Student Class
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+// Student Class
 class Student {
     private String name;
     private int rollNumber;
     private double[] marks;
-    
-    // Constructor
+
     public Student(String name, int rollNumber, double[] marks) {
         this.name = name;
         this.rollNumber = rollNumber;
-        this.marks = marks;
+        this.marks = (marks == null) ? new double[0] : marks;
     }
-    
-    // Calculate average marks
+
+    // Calculate average marks (safe for zero subjects)
     public double calculateAverage() {
+        if (marks.length == 0) return 0.0;
         double sum = 0;
-        for (double mark : marks) {
-            sum += mark;
-        }
+        for (double mark : marks) sum += mark;
         return sum / marks.length;
     }
-    
+
     // Get grade based on average
     public String getGrade() {
         double avg = calculateAverage();
@@ -1573,17 +1575,15 @@ class Student {
         else if (avg >= 60) return "C";
         else return "F";
     }
-    
-    // Getter methods
+
     public String getName() {
         return name;
     }
-    
+
     public int getRollNumber() {
         return rollNumber;
     }
-    
-    // Display student info
+
     public void displayInfo() {
         System.out.println("Name: " + name);
         System.out.println("Roll: " + rollNumber);
@@ -1594,92 +1594,152 @@ class Student {
 
 // Main Report System Class
 public class StudentReportSystem {
-    
-    // Method to find topper
+
+    // Method to find topper (returns null if no students)
     public static Student findTopper(Student[] students) {
+        if (students == null || students.length == 0) return null;
         Student topper = students[0];
+        double topperAvg = topper.calculateAverage();
         for (int i = 1; i < students.length; i++) {
-            if (students[i].calculateAverage() > topper.calculateAverage()) {
+            double avg = students[i].calculateAverage();
+            if (avg > topperAvg) {
                 topper = students[i];
+                topperAvg = avg;
             }
         }
         return topper;
     }
-    
-    // Method to calculate class average
+
     public static double calculateClassAverage(Student[] students) {
+        if (students == null || students.length == 0) return 0.0;
         double sum = 0;
-        for (Student student : students) {
-            sum += student.calculateAverage();
-        }
+        for (Student student : students) sum += student.calculateAverage();
         return sum / students.length;
     }
-    
-    // Method to display full report
+
     public static void displayReport(Student[] students) {
         System.out.println("\n========================================");
         System.out.println("       STUDENT REPORT CARD");
         System.out.println("========================================\n");
-        
+
+        if (students == null || students.length == 0) {
+            System.out.println("No students to display.");
+            return;
+        }
+
         for (int i = 0; i < students.length; i++) {
             System.out.println("Student #" + (i + 1));
             students[i].displayInfo();
             System.out.println("----------------------------------------");
         }
-        
+
         System.out.println("\n========================================");
         System.out.println("       CLASS STATISTICS");
         System.out.println("========================================");
-        
+
         Student topper = findTopper(students);
-        System.out.println("Class Topper: " + topper.getName() + 
-                         " (Roll: " + topper.getRollNumber() + ")");
-        System.out.printf("Topper's Average: %.2f\n", 
-                         topper.calculateAverage());
-        System.out.printf("Class Average: %.2f\n", 
-                         calculateClassAverage(students));
+        if (topper != null) {
+            System.out.println("Class Topper: " + topper.getName() +
+                    " (Roll: " + topper.getRollNumber() + ")");
+            System.out.printf("Topper's Average: %.2f\n", topper.calculateAverage());
+        } else {
+            System.out.println("No topper (no students).");
+        }
+
+        System.out.printf("Class Average: %.2f\n", calculateClassAverage(students));
         System.out.println("========================================\n");
     }
-    
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        
-        System.out.print("Enter number of students: ");
-        int n = sc.nextInt();
-        sc.nextLine(); // Consume newline
-        
-        Student[] students = new Student[n];
-        
-        // Input student data
-        for (int i = 0; i < n; i++) {
-            System.out.println("\nEnter details for Student " + (i + 1));
-            
-            System.out.print("Name: ");
-            String name = sc.nextLine();
-            
-            System.out.print("Roll Number: ");
-            int roll = sc.nextInt();
-            
-            System.out.print("Number of subjects: ");
-            int numSubjects = sc.nextInt();
-            
-            double[] marks = new double[numSubjects];
-            System.out.println("Enter marks for " + numSubjects + " subjects:");
-            for (int j = 0; j < numSubjects; j++) {
-                System.out.print("Subject " + (j + 1) + ": ");
-                marks[j] = sc.nextDouble();
+        try {
+            int n;
+            while (true) {
+                System.out.print("Enter number of students: ");
+                try {
+                    n = sc.nextInt();
+                } catch (InputMismatchException ime) {
+                    System.out.println("Please enter a valid integer.");
+                    sc.nextLine(); // consume invalid
+                    continue;
+                }
+                if (n < 0) {
+                    System.out.println("Number of students cannot be negative.");
+                } else break;
             }
-            sc.nextLine(); // Consume newline
-            
-            students[i] = new Student(name, roll, marks);
+            sc.nextLine(); // consume newline
+
+            if (n == 0) {
+                System.out.println("No students entered. Exiting.");
+                sc.close();
+                return;
+            }
+
+            Student[] students = new Student[n];
+
+            for (int i = 0; i < n; i++) {
+                System.out.println("\nEnter details for Student " + (i + 1));
+                System.out.print("Name: ");
+                String name = sc.nextLine();
+
+                int roll;
+                while (true) {
+                    System.out.print("Roll Number: ");
+                    try {
+                        roll = sc.nextInt();
+                        break;
+                    } catch (InputMismatchException ime) {
+                        System.out.println("Please enter a valid integer for roll number.");
+                        sc.nextLine();
+                    }
+                }
+
+                int numSubjects;
+                while (true) {
+                    System.out.print("Number of subjects: ");
+                    try {
+                        numSubjects = sc.nextInt();
+                    } catch (InputMismatchException ime) {
+                        System.out.println("Please enter a valid integer.");
+                        sc.nextLine();
+                        continue;
+                    }
+                    if (numSubjects < 0) {
+                        System.out.println("Number of subjects cannot be negative.");
+                    } else break;
+                }
+
+                double[] marks = new double[numSubjects];
+                if (numSubjects > 0) {
+                    System.out.println("Enter marks for " + numSubjects + " subjects:");
+                    for (int j = 0; j < numSubjects; j++) {
+                        while (true) {
+                            System.out.print("Subject " + (j + 1) + ": ");
+                            try {
+                                double m = sc.nextDouble();
+                                marks[j] = m;
+                                break;
+                            } catch (InputMismatchException ime) {
+                                System.out.println("Please enter a valid number for marks.");
+                                sc.nextLine();
+                            }
+                        }
+                    }
+                }
+                sc.nextLine(); // consume newline
+
+                students[i] = new Student(name, roll, marks);
+            }
+
+            // Display report
+            displayReport(students);
+
+        } finally {
+            sc.close();
         }
-        
-        // Display report
-        displayReport(students);
-        
-        sc.close();
     }
-}</code></pre>
+}
+</code></pre>
                     <button class="code-viewer-btn" data-target="code-22">Show Full Code & Copy</button>
                     <div class="key-points">
                         <h4> Key Points:</h4>
