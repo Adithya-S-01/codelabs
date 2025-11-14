@@ -55,6 +55,8 @@
         <div class="container">
             <a href="#session1" class="nav-link">Session 1</a>
             <a href="#session2" class="nav-link">Session 2</a>
+            <a href="#session3" class="nav-link">Session 3</a>
+            <a href="#session4" class="nav-link">Session 4</a>
         </div>
     </nav>
 
@@ -709,6 +711,1240 @@ public class PrimeChecker {
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section id="session3" class="session">
+        <div class="container">
+            <h2 class="session-title">Session 3: Arrays & OOP Foundations</h2>
+            <p class="session-goal">Goal: Learn data storage and basic Object-Oriented concepts</p>
+
+            <div class="topic">
+                <h3 class="topic-title">Functions / Methods</h3>
+                <div class="content-grid">
+                    <div class="content-text">
+                        <h4>Why Use Functions?</h4>
+                        <ul>
+                            <li><strong>Reusability:</strong> Write once, use multiple times</li>
+                            <li><strong>Modularity:</strong> Break complex problems into smaller parts</li>
+                            <li><strong>Maintainability:</strong> Easier to update and debug</li>
+                        </ul>
+                        <h4>Function Syntax</h4>
+                        <pre><code>accessModifier returnType functionName(parameters) {
+    // function body
+    return value; // if return type is not void
+}</code></pre>
+                        <div class="explanation">
+                            <h4>Understanding the Code:</h4>
+                            <p><strong>Example:</strong></p>
+                            <pre><code>public static int add(int a, int b) {
+    return a + b;
+}</code></pre>
+                        </div>
+                    </div>
+                    <div class="flowchart" data-chart="function">
+                        <h4>Function Flow <span class="click-hint">(Click steps for detail)</span></h4>
+                        <div class="flowchart-container">
+                            <div class="flow-step">
+                                <div class="flow-box start" data-step="main-call">Main Program</div>
+                                <div class="flow-arrow">↓ calls function</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box function" data-step="parameters">Function<br><span>Parameters received</span></div>
+                                <div class="flow-arrow">↓</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box action" data-step="execution">Execute Function Body</div>
+                                <div class="flow-arrow">↓</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box action" data-step="return-value">Return Value</div>
+                                <div class="flow-arrow">↓</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box end" data-step="main-return">Back to Main</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid" style="margin-top: 2rem;">
+                    <div class="code-section">
+                        <h4>Example: Factorial Function</h4>
+                        <pre id="code-9"><code>import java.util.Scanner;
+
+public class FactorialCalculator {
+    
+    // Function to calculate factorial
+    public static int factorial(int n) {
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+        
+        int result = 1;
+        for (int i = 2; i <= n; i++) {
+            result *= i;
+        }
+        return result;
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter a number: ");
+        int num = sc.nextInt();
+        
+        int fact = factorial(num);
+        System.out.println("Factorial of " + num + " is: " + fact);
+        
+        sc.close();
+    }
+}</code></pre>
+                        <button class="code-viewer-btn" data-target="code-9">Show Full Code & Copy</button>
+                    </div>
+                    <div class="code-section">
+                        <h4>Example: Prime Number Checker</h4>
+                        <pre id="code-10"><code>import java.util.Scanner;
+
+public class PrimeChecker {
+    
+    // Function to check if number is prime
+    public static boolean isPrime(int n) {
+        if (n <= 1) {
+            return false;
+        }
+        
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter a number: ");
+        int num = sc.nextInt();
+        
+        if (isPrime(num)) {
+            System.out.println(num + " is a Prime number");
+        } else {
+            System.out.println(num + " is not a Prime number");
+        }
+        
+        sc.close();
+    }
+}</code></pre>
+                        <button class="code-viewer-btn" data-target="code-10">Show Full Code & Copy</button>
+                        <div class="key-points">
+                            <h4> Key Points:</h4>
+                            <ul>
+                                <li>Functions promote <strong>code reusability</strong> and <strong>modularity</strong></li>
+                                <li><code>return</code> statement sends value back to the caller</li>
+                                <li><code>void</code> functions don't return any value</li>
+                                <li>Use <strong>descriptive names</strong> and keep functions focused on <strong>one task</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3 class="topic-title">Arrays</h3>
+                <div class="content-grid">
+                    <div class="content-text">
+                        <h4>What are Arrays?</h4>
+                        <p>Arrays are data structures that store multiple values of the same type in a single variable. Think of it as a container with numbered slots.</p>
+                        <h4>Why Use Arrays?</h4>
+                        <ul>
+                            <li><strong>Efficiency:</strong> Store related data together</li>
+                            <li><strong>Easy Access:</strong> Access elements using index (0-based)</li>
+                            <li><strong>Iteration:</strong> Process multiple values with loops</li>
+                        </ul>
+                        <h4>Array Declaration & Initialization</h4>
+                        <pre><code>// Method 1: Declare and allocate
+int[] numbers = new int[5];
+
+// Method 2: Declare and initialize
+int[] marks = {85, 90, 78, 92, 88};
+
+// Method 3: Declare, then initialize
+String[] names;
+names = new String[]{"Alice", "Bob", "Charlie"};</code></pre>
+                        <div class="key-points">
+                            <h3> Key Points</h3>
+                            <ul>
+                                <li>Array indices start from <strong>0</strong></li>
+                                <li>Array size is <strong>fixed</strong> after creation</li>
+                                <li>Access elements: <code>array[index]</code></li>
+                                <li>Get length: <code>array.length</code></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flowchart" data-chart="array">
+                        <h4>Array Structure <span class="click-hint">(Click steps for detail)</span></h4>
+                        <div class="flowchart-container">
+                            <div class="flow-step">
+                                <div class="flow-box start" data-step="array-declaration">Array Declaration<br><span>int[] arr = new int[5];</span></div>
+                                <div class="flow-arrow">↓</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box action" data-step="array-memory">Memory Allocation<br><span>5 consecutive slots</span></div>
+                                <div class="flow-arrow">↓</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box action" data-step="array-index">Index Access<br><span>arr[0], arr[1], arr[2]...</span></div>
+                                <div class="flow-arrow">↓</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box end" data-step="array-traversal">Traversal<br><span>Loop through elements</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid" style="margin-top: 2rem;">
+                    <div class="code-section">
+                        <h4>Example: Find Maximum in Array</h4>
+                        <pre id="code-14"><code>import java.util.Scanner;
+
+public class ArrayMax {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter array size: ");
+        int n = sc.nextInt();
+        
+        int[] arr = new int[n];
+        
+        System.out.println("Enter " + n + " elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        
+        int max = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+        
+        System.out.println("Maximum element: " + max);
+        sc.close();
+    }
+}</code></pre>
+                        <button class="code-viewer-btn" data-target="code-14">Show Full Code & Copy</button>
+                    </div>
+                    <div class="code-section">
+                        <h4>Example: Array Average & Sum</h4>
+                        <pre id="code-15"><code>public class ArrayAverage {
+    public static void main(String[] args) {
+        int[] marks = {85, 90, 78, 92, 88};
+        
+        int sum = 0;
+        for (int i = 0; i < marks.length; i++) {
+            sum += marks[i];
+        }
+        
+        double average = (double) sum / marks.length;
+        
+        System.out.println("Sum: " + sum);
+        System.out.println("Average: " + average);
+        
+        // Enhanced for loop
+        System.out.println("\nAll marks:");
+        for (int mark : marks) {
+            System.out.println(mark);
+        }
+    }
+}</code></pre>
+                        <button class="code-viewer-btn" data-target="code-15">Show Full Code & Copy</button>
+                        <div class="key-points">
+                            <h4> Key Points:</h4>
+                            <ul>
+                                <li>Use <strong>enhanced for loop</strong> (<code>for-each</code>) for simple traversal</li>
+                                <li>Use <strong>regular for loop</strong> when you need the index</li>
+                                <li>Always check array bounds to avoid <code>ArrayIndexOutOfBoundsException</code></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3 class="topic-title">Introduction to OOP: Classes & Objects + 4 Pillars of OOP</h3>
+                <div class="content-grid">
+                    <div class="content-text">
+                        <h4>Key Concepts</h4>
+                        <p>OOP structures code around reusable objects. Here's how it flows:</p>
+                        <ul>
+                            <li><strong>Class:</strong> Blueprint/template for creating objects</li>
+                            <li><strong>Object:</strong> Instance of a class (e.g., `Car myCar;`)</li>
+                            <li><strong>Attributes:</strong> Variables that store object data (e.g., `color`, `speed`)</li>
+                            <li><strong>Methods:</strong> Functions that define object behavior (e.g., `drive()`, `brake()`)</li>
+                        </ul>
+                        
+                        <h4>The 4 Pillars of OOP</h4>
+                        <div class="pillars-grid">
+                            <div class="pillar pillar-1">
+                                <h5>1. 🔒 Encapsulation</h5>
+                                <p><strong>Concept:</strong> Bundling data and methods, and hiding internal state (data security).</p>
+                                <div class="code-section-inline">
+                                    <pre id="code-24"><code>// Data Hiding
+private String name;
+    
+// Controlled Access
+public void setName(String n) {
+    if (n.length() > 0) {
+        name = n;
+    }
+}</code></pre>
+                                    <button class="code-viewer-btn" data-target="code-24">Code & Copy</button>
+                                </div>
+                                <p class="pillar-analogy">Analogy: A pill capsule contains medicine, hiding its complex contents but providing safe, public access via consumption.</p>
+                            </div>
+                            
+                            <div class="pillar pillar-2">
+                                <h5>2. 🧠 Abstraction</h5>
+                                <p><strong>Concept:</strong> Showing only essential features and hiding complex implementation details (simplicity).</p>
+                                <div class="code-section-inline">
+                                    <pre id="code-25"><code>// Abstract definition
+abstract class Vehicle {
+    abstract void run(); // What to do
+}
+    
+// Hidden implementation
+class Car extends Vehicle {
+    void run() { 
+        // Complex engine logic here... 
+    }
+}</code></pre>
+                                    <button class="code-viewer-btn" data-target="code-25">Code & Copy</button>
+                                </div>
+                                <p class="pillar-analogy">Analogy: You use a TV remote to change the channel without knowing how the complex signal processing works inside the TV.</p>
+                            </div>
+                            
+                            <div class="pillar pillar-3">
+                                <h5>3. 🧬 Inheritance</h5>
+                                <p><strong>Concept:</strong> Creating new classes based on existing ones, inheriting properties and methods (reusability).</p>
+                                <div class="code-section-inline">
+                                    <pre id="code-26"><code>// Parent Class
+class Animal {
+    void eat() { ... } 
+}
+    
+// Child Class
+class Dog extends Animal {
+    // Inherits eat() method!
+    void bark() { ... }
+}</code></pre>
+                                    <button class="code-viewer-btn" data-target="code-26">Code & Copy</button>
+                                </div>
+                                <p class="pillar-analogy">Analogy: Biological inheritance. A Child inherits characteristics from the Parent but also has their own unique traits.</p>
+                            </div>
+                            
+                            <div class="pillar pillar-4">
+                                <h5>4. 🎭 Polymorphism</h5>
+                                <p><strong>Concept:</strong> A single name (method) having multiple forms or functionalities (flexibility).</p>
+                                <div class="code-section-inline">
+                                    <pre id="code-27"><code>// Method Overloading
+int add(int a, int b) { ... }
+double add(double a, double b) { ... }
+    
+// Method Overriding
+Parent p = new Child();
+p.method(); // Executes Child's version</code></pre>
+                                    <button class="code-viewer-btn" data-target="code-27">Code & Copy</button>
+                                </div>
+                                <p class="pillar-analogy">Analogy: A 'talk' button. When pressed, a dog 'barks', a cat 'meows', but the button ('method') name remains the same.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flowchart" data-chart="oop-class">
+                        <h4>Class & Object Flow <span class="click-hint">(Click steps for detail)</span></h4>
+                        <div class="flowchart-container">
+                            <div class="flow-step">
+                                <div class="flow-box start" data-step="class-definition">Class Definition<br><span>Blueprint created</span></div>
+                                <div class="flow-arrow">↓</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box action" data-step="object-creation">Object Creation<br><span>new keyword</span></div>
+                                <div class="flow-arrow">↓</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box action" data-step="set-attributes">Set Attributes<br><span>Initialize data</span></div>
+                                <div class="flow-arrow">↓</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box end" data-step="call-methods">Call Methods<br><span>Perform operations</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid" style="margin-top: 2rem;">
+                    <div class="code-section">
+                        <h4>Example: Student Class with Encapsulation</h4>
+                        <pre id="code-16"><code>public class Student {
+    // Private attributes (Encapsulation)
+    private String name;
+    private int rollNumber;
+    private double[] marks;
+    
+    // Constructor
+    public Student(String name, int rollNumber, double[] marks) {
+        this.name = name;
+        this.rollNumber = rollNumber;
+        this.marks = marks;
+    }
+    
+    // Getter methods (Accessors)
+    public String getName() {
+        return name;
+    }
+    
+    public int getRollNumber() {
+        return rollNumber;
+    }
+    
+    public double[] getMarks() {
+        return marks;
+    }
+    
+    // Setter methods (Mutators)
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public void setMarks(double[] marks) {
+        this.marks = marks;
+    }
+    
+    // Utility method
+    public double average() {
+        double sum = 0;
+        for (double mark : marks) {
+            sum += mark;
+        }
+        return sum / marks.length;
+    }
+    
+    // Display method
+    public void display() {
+        System.out.println("Name: " + name);
+        System.out.println("Roll: " + rollNumber);
+        System.out.println("Average: " + average());
+    }
+}
+
+// Main class
+public class StudentDemo {
+    public static void main(String[] args) {
+        // Create object using constructor
+        Student s1 = new Student("Alice", 101, 
+                     new double[]{85.5, 90.0, 88.5});
+        
+        // Access through getter
+        System.out.println("Student: " + s1.getName());
+        
+        // Modify through setter
+        s1.setName("Alice Johnson");
+        
+        // Call methods
+        s1.display();
+    }
+}</code></pre>
+                        <button class="code-viewer-btn" data-target="code-16">Show Full Code & Copy</button>
+                        <div class="key-points">
+                            <h4> Key Points:</h4>
+                            <ul>
+                                <li><strong>Private attributes</strong> for encapsulation - data hidden from outside</li>
+                                <li><strong>Getter methods</strong> provide controlled read access to attributes</li>
+                                <li><strong>Setter methods</strong> provide controlled write access with validation</li>
+                                <li><strong>Constructor</strong> initializes object in a clean, consistent way</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="code-section">
+                        <h4>Example: Rectangle Class</h4>
+                        <pre id="code-17"><code>public class Rectangle {
+    // Attributes
+    double length;
+    double width;
+    
+    // Method to calculate area
+    public double area() {
+        return length * width;
+    }
+    
+    // Method to calculate perimeter
+    public double perimeter() {
+        return 2 * (length + width);
+    }
+    
+    // Method to check if square
+    public boolean isSquare() {
+        return length == width;
+    }
+}
+
+public class RectangleDemo {
+    public static void main(String[] args) {
+        Rectangle r1 = new Rectangle();
+        r1.length = 10.0;
+        r1.width = 5.0;
+        
+        System.out.println("Area: " + r1.area());
+        System.out.println("Perimeter: " + r1.perimeter());
+        System.out.println("Is Square? " + r1.isSquare());
+        
+        Rectangle r2 = new Rectangle();
+        r2.length = 7.0;
+        r2.width = 7.0;
+        System.out.println("\nR2 Is Square? " + r2.isSquare());
+    }
+}</code></pre>
+                        <button class="code-viewer-btn" data-target="code-17">Show Full Code & Copy</button>
+                    </div>
+                </div>
+
+                <div class="content-grid" style="margin-top: 2rem;">
+                    <div class="code-section">
+                        <h4>Method Overloading (Compile-time Polymorphism)</h4>
+                        <p>Same method name with different parameters in the same class.</p>
+                        <pre id="code-20"><code>public class Calculator {
+    // Overloaded add methods
+    
+    // Two integers
+    public int add(int a, int b) {
+        return a + b;
+    }
+    
+    // Three integers
+    public int add(int a, int b, int c) {
+        return a + b + c;
+    }
+    
+    // Two doubles
+    public double add(double a, double b) {
+        return a + b;
+    }
+    
+    // Array of integers
+    public int add(int[] numbers) {
+        int sum = 0;
+        for (int num : numbers) {
+            sum += num;
+        }
+        return sum;
+    }
+}
+
+public class OverloadingDemo {
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        
+        System.out.println("2 + 3 = " + calc.add(2, 3));
+        System.out.println("1 + 2 + 3 = " + calc.add(1, 2, 3));
+        System.out.println("2.5 + 3.7 = " + calc.add(2.5, 3.7));
+        
+        int[] nums = {10, 20, 30};
+        System.out.println("Array sum = " + calc.add(nums));
+    }
+}</code></pre>
+                        <button class="code-viewer-btn" data-target="code-20">Show Full Code & Copy</button>
+                        <div class="key-points">
+                            <h4> Key Points:</h4>
+                            <ul>
+                                <li>Same <strong>method name</strong>, different <strong>parameters</strong></li>
+                                <li>Decided at <strong>compile time</strong></li>
+                                <li>Parameters differ in <strong>number, type, or order</strong></li>
+                                <li>Makes code more <strong>readable and flexible</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="code-section">
+                        <h4>Method Overriding (Runtime Polymorphism)</h4>
+                        <p>Child class provides specific implementation of parent's method.</p>
+                        <pre id="code-21"><code>// Parent class
+class Animal {
+    public void sound() {
+        System.out.println("Animal makes a sound");
+    }
+    
+    public void sleep() {
+        System.out.println("Animal is sleeping");
+    }
+}
+
+// Child class - Dog
+class Dog extends Animal {
+    @Override  // Annotation to indicate overriding
+    public void sound() {
+        System.out.println("Dog barks: Woof Woof!");
+    }
+    // sleep() is inherited as-is
+}
+
+// Child class - Cat
+class Cat extends Animal {
+    @Override
+    public void sound() {
+        System.out.println("Cat meows: Meow Meow!");
+    }
+}
+
+public class OverridingDemo {
+    public static void main(String[] args) {
+        Animal myAnimal = new Animal();
+        Animal myDog = new Dog();
+        Animal myCat = new Cat();
+        
+        myAnimal.sound();  // Animal makes a sound
+        myDog.sound();     // Dog barks: Woof Woof!
+        myCat.sound();     // Cat meows: Meow Meow!
+        
+        myDog.sleep();     // Inherited from Animal
+    }
+}</code></pre>
+                        <button class="code-viewer-btn" data-target="code-21">Show Full Code & Copy</button>
+                        <div class="key-points">
+                            <h4> Key Points:</h4>
+                            <ul>
+                                <li>Child class <strong>redefines</strong> parent's method</li>
+                                <li>Same <strong>signature</strong> (name + parameters)</li>
+                                <li>Decided at <strong>runtime</strong> based on object type</li>
+                                <li>Use <code>@Override</code> annotation for clarity</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3 class="topic-title">Constructors & 'this' Keyword</h3>
+                <div class="content-grid">
+                    <div class="content-text">
+                        <h4>What is a Constructor?</h4>
+                        <p>A constructor is a special method that initializes objects when they are created. It has the same name as the class and no return type.</p>
+                        <h4>Types of Constructors</h4>
+                        <ul>
+                            <li><strong>Default Constructor:</strong> No parameters, Java provides one if you don't</li>
+                            <li><strong>Parameterized Constructor:</strong> Takes arguments to initialize attributes</li>
+                        </ul>
+                        <h4>The 'this' Keyword</h4>
+                        <p>The <code>this</code> keyword refers to the current object instance. It's used to:</p>
+                        <ul>
+                            <li>Differentiate between instance variables and parameters</li>
+                            <li>Call other constructors in the same class</li>
+                            <li>Pass the current object as a parameter</li>
+                        </ul>
+                    </div>
+                    <div class="flowchart" data-chart="constructor">
+                        <h4>Constructor Flow <span class="click-hint">(Click steps for detail)</span></h4>
+                        <div class="flowchart-container">
+                            <div class="flow-step">
+                                <div class="flow-box start" data-step="new-keyword">new Keyword<br><span>Object creation started</span></div>
+                                <div class="flow-arrow">↓</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box action" data-step="memory-allocation">Memory Allocated<br><span>Space reserved</span></div>
+                                <div class="flow-arrow">↓</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box action" data-step="constructor-call">Constructor Called<br><span>Initialize attributes</span></div>
+                                <div class="flow-arrow">↓</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box end" data-step="object-ready">Object Ready<br><span>Reference returned</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid" style="margin-top: 2rem;">
+                    <div class="code-section">
+                        <h4>Example: Student with Constructor</h4>
+                        <pre id="code-18"><code>public class Student {
+    String name;
+    int rollNumber;
+    double[] marks;
+    
+    // Default Constructor
+    public Student() {
+        name = "Unknown";
+        rollNumber = 0;
+        marks = new double[3];
+    }
+    
+    // Parameterized Constructor
+    public Student(String name, int rollNumber, double[] marks) {
+        this.name = name;  // 'this' refers to instance variable
+        this.rollNumber = rollNumber;
+        this.marks = marks;
+    }
+    
+    public double average() {
+        double sum = 0;
+        for (double mark : marks) {
+            sum += mark;
+        }
+        return sum / marks.length;
+    }
+    
+    public void display() {
+        System.out.println("Name: " + this.name);
+        System.out.println("Roll: " + this.rollNumber);
+        System.out.println("Average: " + this.average());
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Using parameterized constructor
+        Student s1 = new Student("Bob", 102, 
+                                 new double[]{78, 85, 92});
+        s1.display();
+        
+        // Using default constructor
+        Student s2 = new Student();
+        s2.display();
+    }
+}</code></pre>
+                        <button class="code-viewer-btn" data-target="code-18">Show Full Code & Copy</button>
+                        <div class="key-points">
+                            <h4> Key Points:</h4>
+                            <ul>
+                                <li>Constructor name <strong>must match</strong> class name</li>
+                                <li>Constructors have <strong>no return type</strong> (not even void)</li>
+                                <li><code>this</code> keyword differentiates parameters from instance variables</li>
+                                <li>Constructors are called <strong>automatically</strong> when object is created</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="code-section">
+                        <h4>Example: Bank Account</h4>
+                        <pre id="code-19"><code>public class BankAccount {
+    private String accountNumber;
+    private String holderName;
+    private double balance;
+    
+    // Constructor
+    public BankAccount(String accountNumber, 
+                       String holderName, 
+                       double initialBalance) {
+        this.accountNumber = accountNumber;
+        this.holderName = holderName;
+        this.balance = initialBalance;
+    }
+    
+    // Deposit method
+    public void deposit(double amount) {
+        if (amount > 0) {
+            this.balance += amount;
+            System.out.println("Deposited: " + amount);
+        }
+    }
+    
+    // Withdraw method
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= this.balance) {
+            this.balance -= amount;
+            System.out.println("Withdrawn: " + amount);
+        } else {
+            System.out.println("Insufficient balance!");
+        }
+    }
+    
+    public void displayInfo() {
+        System.out.println("Account: " + this.accountNumber);
+        System.out.println("Holder: " + this.holderName);
+        System.out.println("Balance: $" + this.balance);
+    }
+}
+
+public class BankDemo {
+    public static void main(String[] args) {
+        BankAccount acc1 = new BankAccount("ACC001", 
+                                           "Charlie", 
+                                           1000.0);
+        acc1.displayInfo();
+        acc1.deposit(500);
+        acc1.withdraw(300);
+        acc1.displayInfo();
+    }
+}</code></pre>
+                        <button class="code-viewer-btn" data-target="code-19">Show Full Code & Copy</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="session4" class="session alt-bg">
+        <div class="container">
+            <h2 class="session-title">Session 4: Mini Project</h2>
+            <p class="session-goal">Goal: Combine all topics into a fun small Java project</p>
+
+            <div class="topic">
+                <h3 class="topic-title">Mini Project: Student Report System</h3>
+                <div class="content-grid">
+                    <div class="content-text">
+                        <h4>Project Overview</h4>
+                        <p>Create a complete Student Report System that combines:</p>
+                        <ul>
+                            <li><strong>Classes & Objects:</strong> Student class with attributes</li>
+                            <li><strong>Arrays:</strong> Store multiple student objects</li>
+                            <li><strong>Methods:</strong> Calculate average, find topper, display reports</li>
+                            <li><strong>Input/Output:</strong> Read student data from user</li>
+                            <li><strong>Loops & Conditionals:</strong> Process and analyze data</li>
+                        </ul>
+                        <h4>Features</h4>
+                        <ul>
+                            <li>Add multiple students</li>
+                            <li>Calculate individual averages</li>
+                            <li>Find class topper</li>
+                            <li>Display full class report</li>
+                            <li>Calculate class average</li>
+                        </ul>
+                    </div>
+                    <div class="flowchart" data-chart="project">
+                        <h4>Project Flow <span class="click-hint">(Click steps for detail)</span></h4>
+                        <div class="flowchart-container">
+                            <div class="flow-step">
+                                <div class="flow-box start" data-step="input-data">Input Data<br><span>Read student info</span></div>
+                                <div class="flow-arrow">↓</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box action" data-step="create-objects">Create Objects<br><span>Store in array</span></div>
+                                <div class="flow-arrow">↓</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box action" data-step="process-data">Process Data<br><span>Calculate averages</span></div>
+                                <div class="flow-arrow">↓</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box action" data-step="find-topper">Find Topper<br><span>Compare averages</span></div>
+                                <div class="flow-arrow">↓</div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="flow-box end" data-step="display-report">Display Report<br><span>Show results</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-section" style="margin-top: 2rem;">
+                    <h4>Complete Student Report System</h4>
+                    <pre id="code-22"><code>import java.util.Scanner;
+
+// Student Class
+class Student {
+    private String name;
+    private int rollNumber;
+    private double[] marks;
+    
+    // Constructor
+    public Student(String name, int rollNumber, double[] marks) {
+        this.name = name;
+        this.rollNumber = rollNumber;
+        this.marks = marks;
+    }
+    
+    // Calculate average marks
+    public double calculateAverage() {
+        double sum = 0;
+        for (double mark : marks) {
+            sum += mark;
+        }
+        return sum / marks.length;
+    }
+    
+    // Get grade based on average
+    public String getGrade() {
+        double avg = calculateAverage();
+        if (avg >= 90) return "A+";
+        else if (avg >= 80) return "A";
+        else if (avg >= 70) return "B";
+        else if (avg >= 60) return "C";
+        else return "F";
+    }
+    
+    // Getter methods
+    public String getName() {
+        return name;
+    }
+    
+    public int getRollNumber() {
+        return rollNumber;
+    }
+    
+    // Display student info
+    public void displayInfo() {
+        System.out.println("Name: " + name);
+        System.out.println("Roll: " + rollNumber);
+        System.out.printf("Average: %.2f\n", calculateAverage());
+        System.out.println("Grade: " + getGrade());
+    }
+}
+
+// Main Report System Class
+public class StudentReportSystem {
+    
+    // Method to find topper
+    public static Student findTopper(Student[] students) {
+        Student topper = students[0];
+        for (int i = 1; i < students.length; i++) {
+            if (students[i].calculateAverage() > topper.calculateAverage()) {
+                topper = students[i];
+            }
+        }
+        return topper;
+    }
+    
+    // Method to calculate class average
+    public static double calculateClassAverage(Student[] students) {
+        double sum = 0;
+        for (Student student : students) {
+            sum += student.calculateAverage();
+        }
+        return sum / students.length;
+    }
+    
+    // Method to display full report
+    public static void displayReport(Student[] students) {
+        System.out.println("\n========================================");
+        System.out.println("       STUDENT REPORT CARD");
+        System.out.println("========================================\n");
+        
+        for (int i = 0; i < students.length; i++) {
+            System.out.println("Student #" + (i + 1));
+            students[i].displayInfo();
+            System.out.println("----------------------------------------");
+        }
+        
+        System.out.println("\n========================================");
+        System.out.println("       CLASS STATISTICS");
+        System.out.println("========================================");
+        
+        Student topper = findTopper(students);
+        System.out.println("Class Topper: " + topper.getName() + 
+                         " (Roll: " + topper.getRollNumber() + ")");
+        System.out.printf("Topper's Average: %.2f\n", 
+                         topper.calculateAverage());
+        System.out.printf("Class Average: %.2f\n", 
+                         calculateClassAverage(students));
+        System.out.println("========================================\n");
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter number of students: ");
+        int n = sc.nextInt();
+        sc.nextLine(); // Consume newline
+        
+        Student[] students = new Student[n];
+        
+        // Input student data
+        for (int i = 0; i < n; i++) {
+            System.out.println("\nEnter details for Student " + (i + 1));
+            
+            System.out.print("Name: ");
+            String name = sc.nextLine();
+            
+            System.out.print("Roll Number: ");
+            int roll = sc.nextInt();
+            
+            System.out.print("Number of subjects: ");
+            int numSubjects = sc.nextInt();
+            
+            double[] marks = new double[numSubjects];
+            System.out.println("Enter marks for " + numSubjects + " subjects:");
+            for (int j = 0; j < numSubjects; j++) {
+                System.out.print("Subject " + (j + 1) + ": ");
+                marks[j] = sc.nextDouble();
+            }
+            sc.nextLine(); // Consume newline
+            
+            students[i] = new Student(name, roll, marks);
+        }
+        
+        // Display report
+        displayReport(students);
+        
+        sc.close();
+    }
+}</code></pre>
+                    <button class="code-viewer-btn" data-target="code-22">Show Full Code & Copy</button>
+                    <div class="key-points">
+                        <h4> Key Points:</h4>
+                        <ul>
+                            <li>Project combines <strong>all concepts</strong> learned so far</li>
+                            <li>Use <strong>arrays</strong> to store multiple objects</li>
+                            <li><strong>Static methods</strong> for utility functions (findTopper, calculateClassAverage)</li>
+                            <li><strong>Instance methods</strong> for object-specific operations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3 class="topic-title">Alternative Mini Project: Banking Application</h3>
+                <div class="content-grid">
+                    <div class="code-section">
+                        <h4>Simple Banking System</h4>
+                        <pre id="code-23"><code>import java.util.Scanner;
+
+class BankAccount {
+    private String accountNumber;
+    private String holderName;
+    private double balance;
+    private int transactionCount;
+    
+    // Constructor
+    public BankAccount(String accountNumber, String holderName, 
+                       double initialBalance) {
+        this.accountNumber = accountNumber;
+        this.holderName = holderName;
+        this.balance = initialBalance;
+        this.transactionCount = 0;
+    }
+    
+    // Deposit method
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            transactionCount++;
+            System.out.println("✓ Deposited: $" + amount);
+            System.out.println("New Balance: $" + balance);
+        } else {
+            System.out.println("✗ Invalid amount!");
+        }
+    }
+    
+    // Withdraw method
+    public void withdraw(double amount) {
+        if (amount <= 0) {
+            System.out.println("✗ Invalid amount!");
+        } else if (amount > balance) {
+            System.out.println("✗ Insufficient balance!");
+        } else {
+            balance -= amount;
+            transactionCount++;
+            System.out.println("✓ Withdrawn: $" + amount);
+            System.out.println("New Balance: $" + balance);
+        }
+    }
+    
+    // Check balance
+    public void checkBalance() {
+        System.out.println("Current Balance: $" + balance);
+    }
+    
+    // Display account info
+    public void displayAccountInfo() {
+        System.out.println("\n========== ACCOUNT INFO ==========");
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Holder Name: " + holderName);
+        System.out.println("Balance: $" + balance);
+        System.out.println("Total Transactions: " + transactionCount);
+        System.out.println("==================================\n");
+    }
+    
+    // Getters
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+    
+    public String getHolderName() {
+        return holderName;
+    }
+}
+
+public class BankingApp {
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.println("========== WELCOME TO XYZ BANK ==========\n");
+        
+        // Create account
+        System.out.print("Enter Account Number: ");
+        String accNo = sc.nextLine();
+        
+        System.out.print("Enter Account Holder Name: ");
+        String name = sc.nextLine();
+        
+        System.out.print("Enter Initial Deposit: $");
+        double initialAmount = sc.nextDouble();
+        
+        BankAccount account = new BankAccount(accNo, name, initialAmount);
+        System.out.println("\n✓ Account created successfully!\n");
+        
+        // Banking operations menu
+        boolean exit = false;
+        while (!exit) {
+            System.out.println("========== MENU ==========");
+            System.out.println("1. Deposit Money");
+            System.out.println("2. Withdraw Money");
+            System.out.println("3. Check Balance");
+            System.out.println("4. Account Information");
+            System.out.println("5. Exit");
+            System.out.print("Choose option: ");
+            
+            int choice = sc.nextInt();
+            System.out.println();
+            
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter amount to deposit: $");
+                    double depositAmount = sc.nextDouble();
+                    account.deposit(depositAmount);
+                    break;
+                    
+                case 2:
+                    System.out.print("Enter amount to withdraw: $");
+                    double withdrawAmount = sc.nextDouble();
+                    account.withdraw(withdrawAmount);
+                    break;
+                    
+                case 3:
+                    account.checkBalance();
+                    break;
+                    
+                case 4:
+                    account.displayAccountInfo();
+                    break;
+                    
+                case 5:
+                    exit = true;
+                    System.out.println("Thank you for banking with us!");
+                    break;
+                    
+                default:
+                    System.out.println("Invalid option!");
+            }
+            System.out.println();
+        }
+        
+        sc.close();
+    }
+}</code></pre>
+                        <button class="code-viewer-btn" data-target="code-23">Show Full Code & Copy</button>
+                    </div>
+                    <div class="content-text">
+                        <h4>Project Features</h4>
+                        <ul>
+                            <li><strong>Encapsulation:</strong> Private attributes with public methods</li>
+                            <li><strong>User Input:</strong> Interactive menu-driven system</li>
+                            <li><strong>Validation:</strong> Check for invalid amounts</li>
+                            <li><strong>State Management:</strong> Track balance and transactions</li>
+                        </ul>
+                        <h4>Possible Enhancements</h4>
+                        <ul>
+                            <li>Add multiple accounts using arrays</li>
+                            <li>Implement transfer between accounts</li>
+                            <li>Add transaction history</li>
+                            <li>Implement interest calculation</li>
+                            <li>Add minimum balance requirement</li>
+                        </ul>
+                        <div class="key-points">
+                            <h3> Key Points:</h3>
+                            <ul>
+                                <li>Use <strong>menu-driven approach</strong> for user interaction</li>
+                                <li>Implement <strong>input validation</strong> for robust programs</li>
+                                <li>Use <strong>loops</strong> for continuous operation until exit</li>
+                                <li><strong>Switch statements</strong> for clean menu handling</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3 class="topic-title">Debug & Demo Time</h3>
+                <div class="content-grid">
+                    <div class="content-text">
+                        <h4>Common Errors to Watch For</h4>
+                        <div class="error-section">
+                            <h5>1. NullPointerException</h5>
+                            <pre><code>// Problem
+Student s = null;
+s.displayInfo(); // Error!
+
+// Solution
+Student s = new Student("John", 101, new double[]{80, 90});
+s.displayInfo(); // Works!</code></pre>
+                        </div>
+                        <div class="error-section">
+                            <h5>2. ArrayIndexOutOfBoundsException</h5>
+                            <pre><code>// Problem
+int[] arr = new int[5];
+arr[5] = 10; // Error! Index 0-4 only
+
+// Solution
+arr[4] = 10; // Correct</code></pre>
+                        </div>
+                        <div class="error-section">
+                            <h5>3. Constructor Name Mismatch</h5>
+                            <pre><code>// Problem
+public class Student {
+    public student() { } // Wrong! Lowercase 's'
+}
+
+// Solution
+public class Student {
+    public Student() { } // Correct!</code></pre>
+                        </div>
+                        <div class="error-section">
+                            <h5>4. Forgetting 'this' Keyword</h5>
+                            <pre><code>// Problem (ambiguous)
+public Student(String name) {
+    name = name; // Assigns parameter to itself!
+}
+
+// Solution
+public Student(String name) {
+    this.name = name; // Assigns to instance variable
+}</code></pre>
+                        </div>
+                    </div>
+                    <div class="content-text">
+                        <h4>Debugging Tips</h4>
+                        <ul>
+                            <li><strong>Print Statements:</strong> Use <code>System.out.println()</code> to trace execution</li>
+                            <li><strong>Check Initialization:</strong> Ensure objects and arrays are properly initialized</li>
+                            <li><strong>Verify Indices:</strong> Array indices start at 0, not 1</li>
+                            <li><strong>Review Constructor:</strong> Check name matches class and parameters are used correctly</li>
+                            <li><strong>Test Incrementally:</strong> Test each method individually before combining</li>
+                        </ul>
+                        <h4>Demo Checklist</h4>
+                        <ul>
+                            <li>✓ Code compiles without errors</li>
+                            <li>✓ Program runs and accepts input</li>
+                            <li>✓ Calculations are correct</li>
+                            <li>✓ Output is formatted properly</li>
+                            <li>✓ Edge cases are handled (e.g., negative values)</li>
+                        </ul>
+                        <div class="explanation">
+                            <h4>Practice Exercise</h4>
+                            <p>Try modifying the Student Report System to:</p>
+                            <ul>
+                                <li>Add a method to find the student with lowest average</li>
+                                <li>Count how many students have grade "A" or above</li>
+                                <li>Sort students by their average (challenge!)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </section>
 
