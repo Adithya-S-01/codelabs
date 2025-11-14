@@ -1,4 +1,4 @@
-// Data structure for interactive flow chart explanations (Retained)
+// Data structure for interactive flow chart explanations (UPDATED with new session data)
 const flowChartData = {
     // Java Compilation Process
     compilation: {
@@ -61,7 +61,7 @@ const flowChartData = {
             text: "The loop terminates, and the program resumes execution at the statement immediately following the loop structure."
         }
     },
-    // Function Flow
+    // Function Flow (Retained)
     function: {
         'main-call': {
             title: "Main Program (Caller)",
@@ -77,11 +77,91 @@ const flowChartData = {
         },
         'return-value': {
             title: "Return Value (Output)",
-            text: "If the function is not `void`, it sends a calculated result (return value) back to the line of code that called it."
+            text: "If the function is not `void`, it sends a value back to the caller using 'return'."
         },
         'main-return': {
             title: "Back to Main (Result Used)",
             text: "The calling program receives the returned value and continues its execution, often using the result for further calculations or output."
+        }
+    },
+    // Array Flow (NEW)
+    array: {
+        'array-declaration': {
+            title: "Array Declaration - Step 1",
+            text: "An array variable is declared with a specific type and size. For example, 'int[] arr = new int[5];' creates an array that can hold 5 integers. The array name serves as a reference to the entire collection."
+        },
+        'array-memory': {
+            title: "Memory Allocation - Step 2",
+            text: "Java allocates a contiguous block of memory with slots numbered from 0 to (size-1). All elements are initialized to default values (0 for numbers, null for objects)."
+        },
+        'array-index': {
+            title: "Index Access - Step 3",
+            text: "Individual elements are accessed using square bracket notation with the index: arr[0], arr[1], etc. Array indices start at 0."
+        },
+        'array-traversal': {
+            title: "Traversal - Step 4",
+            text: "Loops are used to process all array elements, either using the index for ordered access or enhanced for loops for simplicity."
+        }
+    },
+    // OOP Class Flow (NEW)
+    'oop-class': {
+        'class-definition': {
+            title: "Class Definition - Step 1 (Blueprint)",
+            text: "A class is created as a blueprint containing attributes (data) and methods (behavior). This is the design phase. No memory is allocated yet."
+        },
+        'object-creation': {
+            title: "Object Creation - Step 2 (Instantiation)",
+            text: "Objects are created using the 'new' keyword followed by a constructor call: 'Student s1 = new Student();'. This allocates memory for the object and returns a reference."
+        },
+        'set-attributes': {
+            title: "Set Attributes - Step 3 (Initialization)",
+            text: "Object attributes are initialized either through constructor parameters or setter methods. Each object gets its own unique copy of the attributes."
+        },
+        'call-methods': {
+            title: "Call Methods - Step 4 (Behavior)",
+            text: "Methods are invoked on objects using dot notation: 's1.calculateAverage();'. The method performs operations specific to that object's data."
+        }
+    },
+    // Constructor Flow (NEW)
+    constructor: {
+        'new-keyword': {
+            title: "New Keyword - Step 1",
+            text: "The 'new' operator starts the object creation process, signaling Java to allocate memory."
+        },
+        'memory-allocation': {
+            title: "Memory Allocated - Step 2",
+            text: "Memory is allocated in the heap for the new object's attributes. Attributes receive default values."
+        },
+        'constructor-call': {
+            title: "Constructor Called - Step 3",
+            text: "The constructor runs, using 'this.attribute = parameter' to initialize the object's data with custom values."
+        },
+        'object-ready': {
+            title: "Object Ready - Step 4",
+            text: "The constructor finishes, and a reference (memory address) to the fully initialized object is returned and stored in the variable."
+        }
+    },
+    // Project Flow (Retained)
+    project: {
+        'input-data': {
+            title: "Input Data - Step 1",
+            text: "The program prompts the user for student information: name, roll number, and marks for multiple subjects. Use Scanner to read input."
+        },
+        'create-objects': {
+            title: "Create Objects - Step 2",
+            text: "For each student's data, create a Student object using the constructor and store it in an array: 'students[i] = new Student(...);'. The array acts as a collection."
+        },
+        'process-data': {
+            title: "Process Data - Step 3",
+            text: "Loop through the array of student objects and call methods on each one (e.g., 'student.calculateAverage()') to transform raw data."
+        },
+        'find-topper': {
+            title: "Find Topper - Step 4",
+            text: "Compare all students by iterating through the array and tracking the student object with the highest average."
+        },
+        'display-report': {
+            title: "Display Report - Step 5",
+            text: "Present the final report, showing individual student details and class statistics (topper, class average)."
         }
     }
 };
@@ -204,7 +284,7 @@ window.addEventListener('scroll', () => {
         }
     });
 });
-const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' };
+const observerOptions = { threshold: 0.05, rootMargin: '50px 0px 50px 0px' };
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -230,12 +310,21 @@ console.log('%cNISB Computer Society', 'color: #FF7B00; font-size: 16px;');
 console.log('%cHappy Learning! 💻', 'color: #A8FFC0; font-size: 14px;');
 
 
-// --- FIX: CODE VIEWER BUTTON LOGIC ---
+// --- CODE VIEWER BUTTON LOGIC ---
 document.querySelectorAll('.code-viewer-btn').forEach(button => {
     button.addEventListener('click', () => {
         const codeId = button.dataset.target;
-        const codeElement = document.getElementById(codeId);
+        // Use button.parentElement to find the right code block, as button might be outside the code-section-inline wrapper
+        let codeElement = document.getElementById(codeId);
         
+        // This handles the case where the button is immediately following a <pre> inside a different wrapper like .code-section-inline
+        if (!codeElement) {
+             const parent = button.closest('.content-text') || button.closest('.code-section');
+             if (parent) {
+                codeElement = parent.querySelector(`#${codeId}`);
+             }
+        }
+
         if (codeElement) {
             const codeContent = codeElement.querySelector('code').textContent;
             
@@ -260,7 +349,7 @@ window.addEventListener('click', (event) => {
 });
 
 
-// --- FIX: Flowchart Interactivity ---
+// --- Flowchart Interactivity ---
 document.querySelectorAll('.flowchart').forEach(chart => {
     const chartName = chart.dataset.chart;
     
@@ -277,9 +366,6 @@ document.querySelectorAll('.flowchart').forEach(chart => {
             stepElement.classList.add('highlight');
 
             // Determine if the clicked element is the flow box itself or the label (flow-arrow-side)
-            const stepName = stepElement.dataset.step || stepElement.parentElement.parentElement.querySelector('.flow-box').dataset.step;
-            
-            // Check if stepName corresponds to a branch label (True/False)
             const dataElement = stepElement.dataset.step;
             
             let stepData;
