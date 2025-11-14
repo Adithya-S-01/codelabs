@@ -22,6 +22,12 @@
     --shadow-bold: 0 15px 30px rgba(0, 0, 0, 0.2);
     --sticky-bg: #FFFCE0; /* Key points background */
     --comment-bg: #F0FFF4; /* Explanation background (Light green-blue) */
+    
+    /* NEW OOP PILLAR COLORS */
+    --pillar-encapsulation: #FFD6AA; 
+    --pillar-abstraction: #C6E0FF;  
+    --pillar-inheritance: #D5FFD5;  
+    --pillar-polymorphism: #FFCCCC; 
 }
 
 body {
@@ -29,7 +35,7 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--bg-color);
-    font-size: 1.1rem; /* Base font size increased for legibility */
+    font-size: 1.1rem;
 }
 
 .container {
@@ -64,28 +70,15 @@ body {
     color: white;
 }
 
-/* --- Hero Section & Animations --- */
-.hero {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #333333 100%);
-    color: white;
-    padding: 6rem 0 5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    transform-style: preserve-3d;
-}
-
-/* Logo Styling (Retained - Sticky like Fullscreen Button) */
+/* Logo Styling (Retained - Fixed position) */
 .logo-container {
-    position: fixed; /* Fixed position - stays visible on scroll */
-    top: 20px;
-    left: 20px;
+    position: fixed; 
+    top: 20px;       
+    left: 20px;      
     display: flex;
     gap: 15px;
     align-items: center;
-    z-index: 1001; /* Higher than fullscreen button */
-    pointer-events: auto; /* Ensure clickable if needed */
-    transition: all 0.3s ease;
+    z-index: 1001; 
 }
 
 .logo {
@@ -97,7 +90,17 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Dynamic shapes animation (Retained) */
+/* --- Hero Section & Animations (Retained) --- */
+.hero {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #333333 100%);
+    color: white;
+    padding: 6rem 0 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+}
+
 .code-shape {
     position: absolute;
     font-family: 'Courier New', monospace;
@@ -119,7 +122,6 @@ body {
     100% { transform: translate(0, 0) rotate(0deg); }
 }
 
-/* Java Logo Icon Animation (Retained) */
 .java-logo-icon {
     position: absolute;
     top: 40%;
@@ -139,7 +141,6 @@ body {
     to { transform: rotate(360deg) translate(0, 0); }
 }
 
-/* New Meme Animation Placeholder (Retained) */
 .java-meme-icon {
     position: absolute;
     bottom: 0;
@@ -299,13 +300,27 @@ body {
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
-/* Content Grid (Retained) */
+/* FIX: Content Grid for OOP Pillars (Allowing 1:1 ratio for text and chart/pillars) */
 .content-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     gap: 3.5rem;
     margin-top: 2rem;
 }
+
+@media (min-width: 1100px) {
+    /* Specific adjustment for the OOP Pillars section to ensure the left text column and the right flow/pillars stack well */
+    #session3 .content-grid .content-text {
+        grid-column: span 1;
+    }
+    #session3 .content-grid .flowchart {
+        /* Ensuring the flowchart takes its natural space */
+        grid-column: span 1;
+        /* FIX: Removing any conflicting position/sizing */
+        height: auto !important; 
+    }
+}
+/* End FIX */
 
 .content-text h4 {
     color: var(--primary-color);
@@ -354,7 +369,7 @@ pre {
     font-size: 1.1rem; 
     line-height: 1.6;
     border: 1px solid rgba(0, 255, 255, 0.2);
-    cursor: default; /* Reset cursor */
+    cursor: default;
 }
 
 /* New: Code Viewer Button Style (Retained) */
@@ -407,34 +422,19 @@ pre {
     overflow: hidden;
 }
 
-.data-types-table th,
-.data-types-table td {
-    padding: 1.2rem;
-    text-align: left;
-    border-bottom: 2px solid #D1D5DB;
-    font-size: 1.1rem;
-}
-
 .data-types-table th {
     background: var(--primary-color);
     color: var(--secondary-color);
     font-weight: 800;
 }
 
-.data-types-table tbody tr:nth-child(even) {
-    background: #F3F4F6;
-}
-
-.data-types-table tr:hover {
-    background: #E5F3FF; 
-}
-
-/* --- Flowcharts (REVERTED TO ORIGINAL LOOK, FIXING PLATFORM STYLES) --- */
+/* --- Flowcharts (REVERTED TO ORIGINAL LOOK, PLATFORM STYLES FIXED) --- */
 .flowchart {
     background: var(--bg-alt); 
     border-radius: 0.5rem;
     padding: 1.5rem; 
     border: none;
+    position: relative; 
 }
 
 .flowchart h4 {
@@ -459,7 +459,6 @@ pre {
 }
 
 .flow-box {
-    /* Original flow box style */
     background: white;
     border: 2px solid var(--primary-color);
     border-radius: 0.5rem;
@@ -469,12 +468,12 @@ pre {
     font-weight: 600;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    cursor: pointer; /* Enable click to view details */
+    cursor: pointer;
 }
 
 /* Original Specific Box Colors */
 .flow-box.source { background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border-color: var(--primary-color); }
-.flow-box.bytecode { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-color: var(--warning-color); } /* Adjusted border to match accent color */
+.flow-box.bytecode { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-color: var(--warning-color); } 
 .flow-box.jvm { background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border-color: var(--success-color); }
 .flow-box.decision { 
     background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
@@ -491,11 +490,6 @@ pre {
 .flow-box.end { background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border-radius: 2rem; border-color: var(--error-color); }
 .flow-box.function { background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%); }
 
-.flow-box:hover {
-    transform: scale(1.03); 
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    border-color: var(--accent-color);
-}
 .flow-box.highlight {
     box-shadow: 0 0 10px 3px var(--accent-color); 
     border-color: var(--accent-color) !important;
@@ -575,7 +569,7 @@ pre {
 
 /* FIX: Challenge Section background color (Orange accent) */
 .challenge {
-    background: linear-gradient(135deg, 0%, #ff99337a 100%);
+    background: linear-gradient(135deg, #f4f2ef0f 100%);
     border: 6px solid var(--primary-color);
     padding: 5rem 4rem;
     transform: rotate(1deg); 
@@ -597,32 +591,130 @@ pre {
     border-bottom: none;
 }
 
-.challenge-desc {
-    font-size: 1.5rem;
-    text-align: center;
-    margin-bottom: 3rem;
-    font-weight: 700;
+.challenge-title-fun {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    text-shadow: 2px 2px 0px var(--primary-color);
+    color: white; /* Title white for contrast against orange */
+}
+
+.challenge .topic-title {
     color: var(--primary-color);
+    text-align: center;
+    font-size: 3rem;
+    text-shadow: 2px 2px 0px white;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
-.pattern-examples {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem; 
+.challenge-title-fun .icon-left, .challenge-title-fun .icon-right {
+    font-size: 2.5rem;
+    animation: sparkle 1.5s infinite alternate;
+}
+.challenge-title-fun .icon-right {
+    animation-delay: 0.5s;
+}
+@keyframes sparkle {
+    from { opacity: 0.8; transform: scale(1); }
+    to { opacity: 1; transform: scale(1.1); }
 }
 
-.pattern-example {
-    background: white;
-    border-radius: 1rem;
-    padding: 2rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    border: 3px solid var(--accent-color);
-}
-
-.pattern-example h4 {
-    color: var(--accent-color);
+.pattern-example h4.pattern-title-fun {
+    color: var(--primary-color);
     font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 800;
 }
+
+/* Session 3 & 4 Additional Styles - NEW VISUALS FOR PILLARS */
+.pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.pillar {
+    background: var(--comment-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pillar:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 255, 255, 0.3);
+}
+
+/* Specific Styles for Pillars */
+.pillar-1 { 
+    border: 4px solid var(--accent-color); 
+    background: var(--pillar-encapsulation); 
+} 
+.pillar-2 { 
+    border: 4px solid var(--secondary-color); 
+    background: var(--pillar-abstraction); 
+} 
+.pillar-3 { 
+    border: 4px dashed var(--success-color); 
+    background: var(--pillar-inheritance); 
+} 
+.pillar-4 { 
+    border: 4px dotted var(--error-color); 
+    background: var(--pillar-polymorphism); 
+} 
+
+.pillar h5 {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.3rem;
+}
+
+/* NEW: Style for Iframe containers inside pillars */
+.code-section-iframe {
+    height: 100px; /* Define fixed height for visual consistency */
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.pillar-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    /* FIX: Remove default iframe margin/padding */
+    display: block; 
+}
+/* End of NEW Iframe Styles */
+
+.pillar-analogy {
+    font-style: italic;
+    font-size: 0.95rem !important;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+}
+
+.code-section-inline pre {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    cursor: pointer;
+}
+
+.pillar p {
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
 
 /* --- Footer (Retained) --- */
 .footer {
@@ -788,4 +880,6 @@ pre {
     .java-logo-icon, .java-meme-icon { font-size: 4rem; }
     .challenge { transform: rotate(0deg); padding: 2rem 1.5rem; }
     .code-viewer-content { height: 80%; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    .code-section-iframe { height: 80px; }
 }
