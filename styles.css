@@ -365,11 +365,13 @@ pre {
     padding: 2rem;
     border-radius: 1rem;
     overflow-x: auto;
+    overflow-y: auto;
     font-family: 'Fira Code', 'Courier New', Courier, monospace;
     font-size: 1.1rem; 
     line-height: 1.6;
     border: 1px solid rgba(0, 255, 255, 0.2);
     cursor: default;
+    max-height: 400px;
 }
 
 /* New: Code Viewer Button Style (Retained) */
