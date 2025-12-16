@@ -1090,7 +1090,72 @@ p.method(); // Executes Child's version</code></pre>
                         <h4>Example: Student Class with Encapsulation</h4>
                         <pre id="code-16"><code>public class Student {
     // Private attributes (Encapsulation)
+    private String name;
+    private int rollNumber;
+    private double[] marks;
     
+    // Constructor
+    public Student(String name, int rollNumber, double[] marks) {
+        this.name = name;
+        this.rollNumber = rollNumber;
+        this.marks = marks;
+    }
+    
+    // Getter methods (Accessors)
+    public String getName() {
+        return name;
+    }
+    
+    public int getRollNumber() {
+        return rollNumber;
+    }
+    
+    public double[] getMarks() {
+        return marks;
+    }
+    
+    // Setter methods (Mutators)
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public void setMarks(double[] marks) {
+        this.marks = marks;
+    }
+    
+    // Utility method
+    public double average() {
+        double sum = 0;
+        for (double mark : marks) {
+            sum += mark;
+        }
+        return sum / marks.length;
+    }
+    
+    // Display method
+    public void display() {
+        System.out.println("Name: " + name);
+        System.out.println("Roll: " + rollNumber);
+        System.out.println("Average: " + average());
+    }
+}
+
+// Main class
+public class StudentDemo {
+    public static void main(String[] args) {
+        // Create object using constructor
+        Student s1 = new Student("Alice", 101, 
+                     new double[]{85.5, 90.0, 88.5});
+        
+        // Access through getter
+        System.out.println("Student: " + s1.getName());
+        
+        // Modify through setter
+        s1.setName("Alice Johnson");
+        
+        // Call methods
+        s1.display();
+    }
 }</code></pre>
                         <button class="code-viewer-btn" data-target="code-16">Show Full Code & Copy</button>
                         <div class="key-points">
